@@ -1,0 +1,14 @@
+---
+- name: Install Mysql package
+  yum : name={{ item }} state=present enablerepo=remi,epel
+  with_items:
+    - mysql
+    - mysql-server
+
+- name: Create Mysql configuration file
+  template: src=my.cnf.j2 dest=/etc/my.cnf
+  notify: 
+    - Restart mysql
+
+- name: Start Mysql Service
+  service: name=mysqld state=started enabled=yes

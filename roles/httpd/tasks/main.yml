@@ -1,0 +1,11 @@
+---
+- name: Install httpd
+  yum : name=httpd state=present enablerepo=remi,epel
+
+- name: Configure httpd
+  template: src=httpd.conf.tpl dest=/etc/httpd/conf/httpd.conf
+  notify:
+    - Restart httpd
+
+- name: Start httpd Service
+  service: name=httpd state=started enabled=yes
