@@ -1,11 +1,9 @@
 ---
 - hosts: all
-  user : vagrant
-  sudo : yes
+  become: yes
   roles:
-    - repos
     - init
     - php
     - httpd
     - mysql
-    # - wp-cli for wordpress
+    - wp-cli

@@ -1,0 +1,11 @@
+---
+- name: Install mysql repos
+  yum:
+    name: http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+
+- name: Install MySQL
+  yum:
+    name: mysql-server
+
+- name: Start Mysql
+  service: name=mysqld state=started enabled=yes
